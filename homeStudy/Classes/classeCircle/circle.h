@@ -11,9 +11,11 @@ class Circle{
     Circle();
     Circle(float, int, int);
     float area();
-    void set_radius();
-    void set_origin();
+    float diameter();
+    void set_radius(float);
+    void set_origin(int, int);
     float get_radius();
+    void imprime();
 };
 
 #endif

@@ -16,12 +16,15 @@ Circle::Circle(float r, int x, int y){
 }
 
 float Circle:: area(){
-    float area = x*y;
+    float area = radius*radius*3.141592;
     return area;
 }
 
 void Circle:: set_radius(float f){
-    this->radius = f;
+    if(f>0)
+        this->radius = f;
+    else
+        this->radius=0;
 }
 
 void Circle:: set_origin(int x, int y){
@@ -31,4 +34,14 @@ void Circle:: set_origin(int x, int y){
 
 float Circle:: get_radius(){
     return this->radius;
+}
+
+float Circle:: diameter(){
+    float diameter = radius * 2;
+    return diameter;
+
+}
+
+void Circle::imprime(){
+    cout << "{" << radius << ":" << x << ":" << y << "}" << endl;
 }
