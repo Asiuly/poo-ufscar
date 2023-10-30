@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+//função main
 int main(){
     int n = 0;
 
