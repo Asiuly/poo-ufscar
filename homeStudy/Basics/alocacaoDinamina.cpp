@@ -6,6 +6,7 @@ using namespace std;
 
 #define TAMANHO 10
 
+//commits sem email - contabilizando
 int main(){
     int *vet = nullptr; //criando um ponteiro
 
