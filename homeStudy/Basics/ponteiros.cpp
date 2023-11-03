@@ -3,7 +3,7 @@ using namespace std;
 
 void soma(int* a);
 void soma2(int &a);
-
+//commit contabilizando
 int main(){
     int a = 50;
     cout << "Valor de a: " << a << "\n";
