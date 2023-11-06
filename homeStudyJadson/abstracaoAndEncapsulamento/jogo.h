@@ -12,6 +12,7 @@ class Jogo {
     float custo;
 
     void calcular() {if (horas>0) custo=preco/horas;}
+    
   public:
     void adquirir(const string&, float);
     void atualizar(float);

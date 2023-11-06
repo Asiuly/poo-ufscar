@@ -10,5 +10,7 @@ int main(){
     kof.jogar(50);
     kof.exibir();
 
+    cout << &kof;
+    
     return 0;
 }
