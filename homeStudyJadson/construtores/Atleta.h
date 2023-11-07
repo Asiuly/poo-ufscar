@@ -1,6 +1,7 @@
 #ifndef ATLETA_H
 #define ATLETA_H
 
+//construindo a classe atleta
 class Atleta{
   private:
     int acertos;
