@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/User/Desktop/poo-ufscar/poo-ufscar/homeStudy/Classes/classeCircle",
-      "program": "c:/Users/User/Desktop/poo-ufscar/poo-ufscar/homeStudy/Classes/classeCircle/build/Debug/outDebug",
+      "cwd": "c:/Users/User/Desktop/poo-ufscar/poo-ufscar/homeStudy/Classes/ClasseTempo",
+      "program": "c:/Users/User/Desktop/poo-ufscar/poo-ufscar/homeStudy/Classes/ClasseTempo/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

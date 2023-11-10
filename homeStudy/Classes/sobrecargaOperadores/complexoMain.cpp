@@ -12,6 +12,7 @@ int main(){
     cout << "n2 = ";
     n2.print();
 
+    //fazendo ooperação com o operator de sobrecarga de operadores
     Complexo n3 = n1 + n2;
     cout << "n1+n2 = ";
     n3.print();
