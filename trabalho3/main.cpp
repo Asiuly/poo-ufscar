@@ -62,5 +62,7 @@ int main() {
     }
     cout << "------------------------" << endl;
 
+    crud.Delete(1, "obras.txt");
+
     return 0;
 }

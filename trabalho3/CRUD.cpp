@@ -40,12 +40,12 @@ bool CRUD:: atualizaLista(string arquivo){
 
         cout << "Numero de obras: " << obras.size() << endl;
         for(int i=0; i<obras.size(); i++){
-
             cout<< "Escrevevendo obra.." << i << endl;
             //colocando no arquivo os atributos gerais
 
             categoria = obras[i]->getCategoria();
             escreverString(arquivoSaida, categoria);
+            cout<< "Escrevevendo categoria" << categoria  << endl;
             
             cout<< "OBRAS ID.." << obras[i]->getID() << endl;
             num = obras[i]->getID();
@@ -91,13 +91,12 @@ bool CRUD:: atualizaLista(string arquivo){
                 escreverString(arquivoSaida, escultura->getMaterial());
                 cout<< "Material escrito.." << escultura->getMaterial() << endl;
 
-                peso = escultura->getPeso();
-                arquivoSaida.write(reinterpret_cast<char*>(&peso), sizeof(double));
-                cout<< "Peso escrito.." << escultura->getPeso() << endl;
-
                 escreverString(arquivoSaida, escultura->getRepresentacao());
                 cout<< "Representação escrita.." << escultura->getRepresentacao() << endl;
 
+                peso = escultura->getPeso();
+                arquivoSaida.write(reinterpret_cast<char*>(&peso), sizeof(double));
+                cout<< "Peso escrito.." << escultura->getPeso() << endl;
             }//erro
             else{
                 cout << "Categoria inválida";
@@ -120,19 +119,25 @@ bool CRUD:: Create(ObrasDeArte* obra, string arquivo){
     ObrasDeArte* auxObra;
 
     if(obra->getCategoria() == "Pintura"){
+        cout << "entrei if pintura em create..\n";
         Pintura* pinturaPassada= dynamic_cast<Pintura*>(obra);
 
         auxObra = new Pintura(pinturaPassada->getID(), pinturaPassada->getArtista(), pinturaPassada->getTitulo(), pinturaPassada->getGenero(), pinturaPassada->getAnoPublicacao(), pinturaPassada->getMeio(), pinturaPassada->getPaletaCores(), pinturaPassada->getTemMoldura());
+        
+        cout << "finalizei transferencia pintura para obra em create if pintura..\n";
 
     }
     else if(obra->getCategoria() == "Escultura"){
+        cout << "entrei if escultura em create..\n";
         Escultura* esculturaPassada= dynamic_cast<Escultura*>(obra);
 
         auxObra = new Escultura(esculturaPassada->getID(), esculturaPassada->getArtista(), esculturaPassada->getTitulo(), esculturaPassada->getGenero(), esculturaPassada->getAnoPublicacao(), esculturaPassada->getMaterial(), esculturaPassada->getRepresentacao(), esculturaPassada->getPeso());
-
+        
+        cout << "finalizei transferencia escultura para obra em create if escultura..\n";
     }
 
     obras.push_back(auxObra);
+    cout << "empurrei no create..\n";
 
     atualizaLista(arquivo);
 
@@ -152,8 +157,12 @@ vector<ObrasDeArte*> CRUD:: Read(string arquivo){
 
         cout<< "Arquivo aberto..\n";
         int indice = 0;
-        while (arquivoEntrada.good()) {
-            cout<< "Entrei no while..\n";
+        while (arquivoEntrada.peek() != EOF) {
+            cout<< "Entrei no while read..\n" << endl;
+            
+            
+            categoria = lerString(arquivoEntrada);
+            cout<< "Exibindo categoria: " << categoria << endl;
             
             arquivoEntrada.read(reinterpret_cast<char*>(&id), sizeof(id));
             cout << "exibindo id: " << id << endl;
@@ -170,12 +179,8 @@ vector<ObrasDeArte*> CRUD:: Read(string arquivo){
             arquivoEntrada.read(reinterpret_cast<char*>(&anoPublicacao), sizeof(anoPublicacao));
             cout << "exibindo Ano: " << anoPublicacao << endl;
 
-
-            categoria = lerString(arquivoEntrada);
-
-
             if (categoria == "Pintura") {
-                cout << "exibindo categoria: " << categoria << endl;
+                cout << "exibindo: " << categoria << endl;
 
                 string meio, paletaCores;
                 bool temMoldura;
@@ -192,9 +197,10 @@ vector<ObrasDeArte*> CRUD:: Read(string arquivo){
                 obras.push_back(new Pintura(id, artista, titulo, genero, anoPublicacao, meio, paletaCores, temMoldura));
                 cout << obras[indice]->getTitulo() << "Adicionada no vetor..." << endl;
 
-                cout << *obras[0];
+                cout << *obras[indice];
 
             } else if (categoria == "Escultura") {
+                cout << "exibindo: " << categoria << endl;
                 string material, representacao;
                 double peso;
 
@@ -202,13 +208,14 @@ vector<ObrasDeArte*> CRUD:: Read(string arquivo){
                 cout << "exibindo material: " << material << endl;
                 
                 representacao = lerString(arquivoEntrada);
-                cout << "exibindo representação: " << representacao << endl;
+                cout << "exibindo representacao: " << representacao << endl;
                 
                 arquivoEntrada.read(reinterpret_cast<char*>(&peso), sizeof(peso));
                 cout << "exibindo peso: " << peso << endl;
                 
                 obras.push_back(new Escultura(id, artista, titulo, genero, anoPublicacao, material, representacao, peso));
-                cout << "Escultura " << obras[indice]->getTitulo() << "Adicionada no vetor..." << endl;
+                cout << "Escultura " << obras[indice]->getTitulo() << " Adicionada no vetor..." << endl;
+                cout << *obras[indice];
                 
             } else {
                 cout << "categoria invalida" << endl;
@@ -229,23 +236,26 @@ vector<ObrasDeArte*> CRUD:: Read(string arquivo){
 }
 
 bool CRUD:: Delete(int ID, string arquivo){
-
+    cout << "entrando delete..." << endl;
     obras.erase(remove_if(obras.begin(), obras.end(), [ID](ObrasDeArte* obra) { 
         return obra->getID() == ID; 
     }), obras.end());
 
     atualizaLista(arquivo);
+    cout << "delete realizado..." << endl;
     return true;
 }
 
 bool CRUD:: Update(int ID, ObrasDeArte* obra, string arquivo){
+    cout << "Entrando update.." << endl;
 
         for(int i=0; i < obras.size(); i++){
             if(obras[i]->getID() == ID){
+                cout << "ID encontrado" << endl;
                 obras[i] = obra;
             }
         }
-
+    cout << "Obra atualizada" << endl;
     atualizaLista(arquivo);
     return true;
 }

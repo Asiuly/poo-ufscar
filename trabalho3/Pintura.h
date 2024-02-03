@@ -28,10 +28,6 @@ class Pintura: public ObrasDeArte{
         bool getTemMoldura() const;
         void removerMoldura();
         void adicionarMoldura();
-
-        string getInformacaoEspecifica1() const override; //meio
-        string getInformacaoEspecifica2() const override; //paleta de cores
-        bool getInformacaoEspecifica3() const override; //temMoldura
 };
 
 
