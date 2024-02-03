@@ -44,8 +44,10 @@ string Escultura:: getCategoria() const{
     return "Escultura";
 }
 
-ostream& operator<<(ostream& os, Escultura& escultura) {
-    os << "---------- OBRA " << escultura.getTitulo() << " ----------" << endl << "ID: " << escultura.getID() << endl << "Artista: " << escultura.getArtista() << endl << "Titulo: " << escultura.getTitulo() << endl << "Genero: " << escultura.getGenero() << endl << "Ano: " << escultura.getAnoPublicacao() << endl << "Valor: " << escultura.avaliarValor() << endl << "Material: " << escultura.getMaterial() << endl << "Peso: " << escultura.getPeso() << endl << "Representação: " << escultura.getRepresentacao() << endl << "---------- OBRA " << escultura.getTitulo() << " ----------" << endl;
-
-    return os;
+void Escultura::exibirInfos() const{
+    ObrasDeArte::exibirInfos();
+    cout << "Material: " << this->getMaterial() << endl;
+    cout << "Peso: " << this->getPeso() << endl;
+    cout << "Representacao: " << this->getRepresentacao() << endl;
+    cout << "---------- OBRA " << this->getTitulo() << " ----------" << endl;
 }

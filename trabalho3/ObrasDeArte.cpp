@@ -45,10 +45,14 @@ void ObrasDeArte:: setAnoPublicacao(int ano){
     this->anoPublicacao = ano;
 }
 
-ostream& operator<<(ostream& os, const ObrasDeArte& obra){
-    os << "---------- OBRA " << obra.getTitulo() << " ----------" << endl << "ID: " << obra.getID() << endl << "Artista: " << obra.getArtista() << endl << "Titulo: " << obra.getTitulo() << endl << "Genero: " << obra.getGenero() << endl << "Ano: " << obra.getAnoPublicacao() << endl << "Valor: " << obra.avaliarValor() << endl << "---------- OBRA " << obra.getTitulo() << " ----------" << endl;
-
-    return os;
+void ObrasDeArte::exibirInfos() const{
+    cout << "---------- OBRA " << this->getTitulo() << " ----------" << endl;
+    cout << "ID: " << this->getID() << endl;
+    cout << "Artista: " << this->getArtista() << endl;
+    cout << "Titulo: " << this->getTitulo() << endl;
+    cout << "Genero: " << this->getGenero() << endl;
+    cout << "Ano: " << this->getAnoPublicacao() << endl;
+    cout << "Valor: " << this->avaliarValor() << endl;
 }
 
 int ObrasDeArte:: calcularIdade() const{

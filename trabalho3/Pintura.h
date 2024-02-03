@@ -18,7 +18,7 @@ class Pintura: public ObrasDeArte{
 
         //get set
         virtual string getCategoria() const;
-        friend ostream& operator<<(ostream& os, const ObrasDeArte& obra);
+        void exibirInfos() const override;
         string getPaletaCores() const;
         void setPaletaCores(string);
 

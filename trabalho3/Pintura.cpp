@@ -38,8 +38,10 @@ string Pintura:: getCategoria() const{
     return "Pintura";
 }
 
-ostream& operator<<(ostream& os, Pintura& pintura) {
-    os << "---------- OBRA " << pintura.getTitulo() << " ----------" << endl << "ID: " << pintura.getID() << endl << "Artista: " << pintura.getArtista() << endl << "Titulo: " << pintura.getTitulo() << endl << "Genero: " << pintura.getGenero() << endl << "Ano: " << pintura.getAnoPublicacao() << endl << "Valor: " << pintura.avaliarValor() << endl << "Meio: " << pintura.getMeio() << endl << "Paleta de cores: " << pintura.getPaletaCores() << endl << "Moldura: " << (pintura.getTemMoldura() ? "Sim" : "Não") << endl << "---------- OBRA " << pintura.getTitulo() << " ----------" << endl;
-
-    return os;
+void Pintura:: exibirInfos() const{
+    ObrasDeArte::exibirInfos();
+    cout << "Meio: " << this->getMeio() << endl;
+    cout << "Paleta de cores: " << this->getPaletaCores() << endl;
+    cout << "Moldura: " << (this->getTemMoldura() ? "Sim" : "Nao") << endl;
+    cout << "---------- OBRA " << this->getTitulo() << " ----------" << endl;
 }

@@ -35,7 +35,7 @@ class ObrasDeArte{
         int calcularIdade() const;
         double avaliarValor() const; //com base no ano igual whisky
         
-        friend ostream& operator<<(ostream& os, const ObrasDeArte& obra);
+        virtual void exibirInfos() const;
         virtual string getCategoria() const = 0;
 };
 

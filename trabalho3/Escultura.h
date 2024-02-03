@@ -25,7 +25,7 @@ class Escultura: public ObrasDeArte{
         void setRepresentacao(string representacao);
 
         bool isRepresentacao(string guessRepresentacao);
-        friend ostream& operator<<(ostream& os, Escultura& escultura);
+        void exibirInfos() const override;
 };
 
 
